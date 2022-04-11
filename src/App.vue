@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="app-main">
     <router-view/>
   </section>
 </template>
@@ -27,14 +27,15 @@
   justify-content: center;
   align-items: center;
 }
-section {
+.app-main {
   width: 768px;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   border: 1px solid #C6C6C6;
+  padding: 5%;
   /* border-radius: 10px; */
 }
 </style>

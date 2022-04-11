@@ -6,7 +6,7 @@
 
 <style scoped>
   .header {
-    position: fixed;
+    /* position: fixed; */
     width: 80px;
     background-color: #fff;
     border: 1px solid #000;
