@@ -6,6 +6,7 @@
     </div>
     <div class="progress-bar-container">
       <div class="progress-bar"></div>
+      <div class="progress-color-bar"></div>
       <span class="point">5/25</span>
     </div>
   </section>
@@ -35,6 +36,13 @@ export default {
     background-color: #eee;
     border-radius: 20px;
     width: 80%;
+    height: 10px;
+  }
+  .progress-color-bar {
+    position: fixed;
+    background-color: #00A862;
+    border-radius: 20px;
+    width: 10%;
     height: 10px;
   }
   .point {
