@@ -4,8 +4,8 @@
     <div class="event-container">
       <ul :style="setTotalWidthStyle" class="content-box">
         <li :style="setWidthStyle" class="content" v-for="(value, index) in contentsList" :key="index">
-          <img class="content-image" src="{{ value.imgUrl }}" alt="">
-          <strong class="content-title">{{ value.title }}</strong><br/>
+          <img class="content-image" src="{{ value.imgUrl }}" alt="eventImg">
+          <strong class="content-title">{{ value.title }}</strong>
           <p class="content-body">{{ value.body }}</p>
           <!-- <span>{{ value.coffeeSticker }}</span> -->
         </li>
@@ -40,8 +40,7 @@ export default {
   },
   methods: {
     getContentsList () {
-      var param = new Object()
-      //위 내용 주석 풀고 사용 (this.coffeesNameVal, this.stickerVal은 v-model을 통해 받았을 것)
+      let param = new Object()
       this.$axios.post('/saeum/startProject/getContentsList', param)
       .then((response) => {
         this.contentsList = response.data
@@ -86,15 +85,15 @@ export default {
     padding: 0px;
   }
   .content {
-    /* position: absolute; */
     width: var(--contentsBoxWidth);
-    padding: 10px;
+    padding: 10px 10px 20px 10px;
     margin-right: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
   }
   .content-image {
-    height: 150px;
+    height: 200px;
     border: 1px solid #ccc;
     border-radius: 5px;
   }
