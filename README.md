@@ -1,7 +1,6 @@
 # Starbucks App Clone Coding
 
 ## 구현 사항
-<br/>
 
 ### 메인 화면
 #### 1. 타이틀
