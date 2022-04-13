@@ -1,6 +1,6 @@
 <template>
   <nav class="footer">
-    <router-link to="/home"><img src="../../assets/image/icon/homeIconSelected.png" alt="HomeIcon" class="footer-icon"></router-link>
+    <router-link to="/"><img src="../../assets/image/icon/homeIconSelected.png" alt="HomeIcon" class="footer-icon"></router-link>
     <img src="../../assets/image/icon/payIcon.png" alt="PayIcon" class="footer-icon">
     <router-link to="/order"><img src="../../assets/image/icon/orderIcon.png" alt="OrderIcon" class="footer-icon"></router-link>
     <img src="../../assets/image/icon/giftIcon.png" alt="GiftIcon" class="footer-icon">
@@ -20,7 +20,7 @@ export default {
    bottom: 0;
    left: 0;
    background-color: #f6f6f6;
-   opacity: 0.8;
+   opacity: 0.9;
    padding: 7px;
  }
 
