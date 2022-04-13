@@ -1,16 +1,22 @@
 <template>
-  <div class="order">
+  <section class="order">
     <OrderHeader/>
-    <h1>This is order page</h1>
-  </div>
+    <OrderList/>
+    <SearchPopup/>
+  </section>
 </template>
 
 <script>
-import OrderHeader from '../components/order/cSU_OrderHeader.vue'
+import OrderHeader from '../components/layout/cSU_OrderHeader.vue'
+import OrderList from '../components/order/cSU_OrderList.vue'
+import SearchPopup from '../components/modal/cSU_SearchPopup.vue'
 
 export default {
-  component: {
-    OrderHeader
+  name: 'OrderView',
+  components: {
+    OrderHeader,
+    OrderList,
+    SearchPopup
   }
 }
 </script>

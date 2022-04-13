@@ -2,6 +2,19 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import axios from 'axios'
+
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.timeout = 100000
+axios.defaults.baseURL = 'http://192.168.0.100:9090'
+
+// 캐싱 방지
+axios.defaults.headers.get['Cache-Control'] = 'no-cache'
+axios.defaults.headers.get.Pragma = 'no-cache'
 
 const app = createApp(App)
+
+// axios를 global($axios)로 사용
+app.config.globalProperties.$axios = axios
+
 app.use(store).use(router).mount('#app')

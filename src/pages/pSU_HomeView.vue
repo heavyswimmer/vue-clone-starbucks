@@ -1,23 +1,25 @@
 <template>
-  <div class="home">
+  <section class="home">
+    <MainTitle/>
     <ProgressBar/>
-    <EventList/>
-    <MainFooter/>
-  </div>
+    <EventSlide/>
+    <HomeFooter/>
+  </section>
 </template>
 
 <script>
-// @ is an alias to /src
-import ProgressBar from '../components/main/cSU_ProgressBar.vue'
-import EventList from '../components/main/cSU_EventList.vue'
-import MainFooter from '../components/main/cSU_MainFooter.vue'
+import HomeFooter from '../components/layout/cSU_HomeFooter.vue'
+import MainTitle from '../components/home/cSU_MainTitle.vue'
+import ProgressBar from '../components/home/cSU_ProgressBar.vue'
+import EventSlide from '../components/home/cSU_EventSlide.vue'
 
 export default {
   name: 'HomeView',
   components: {
+    MainTitle,
     ProgressBar,
-    EventList,
-    MainFooter
+    EventSlide,
+    HomeFooter
   }
 }
 </script>
