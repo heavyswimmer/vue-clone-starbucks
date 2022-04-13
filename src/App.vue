@@ -46,6 +46,11 @@
   src: url('assets/fonts/AvenirLTStd-Roman.otf') format('opentype');
   font-weight: 500;
 }
+@font-face {
+  font-family: 'Cavolini';
+  src: url('assets/fonts/CAVOLINIITALIC.TTF') format('truetype');
+  font-weight: normal;
+}
 #app {
   font-family: 'Avenir', 'AppleSDGothicNeo', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -61,6 +66,10 @@
   display: flex;
   flex-direction: column;
   /* border: 1px solid #ccc; */
+}
+ul {
+  list-style-type: none;
+  padding-left: 0;
 }
 
 @media screen and (min-width: 768px) {
