@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import cBtn from '../src/components/layout/cSU_CommonBtn.vue'
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.timeout = 100000
@@ -13,6 +14,7 @@ axios.defaults.headers.get['Cache-Control'] = 'no-cache'
 axios.defaults.headers.get.Pragma = 'no-cache'
 
 const app = createApp(App)
+app.component('cBtn', cBtn)
 
 // axios를 global($axios)로 사용
 app.config.globalProperties.$axios = axios
