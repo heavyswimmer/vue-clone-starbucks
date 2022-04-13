@@ -4,7 +4,7 @@
       <img class="left-arrow-icon" src="../../assets/image/icon/leftarrowIcon.png" alt="LeftArrowIcon"/>
     </button>
     <p class="header-title">음료</p>
-    <button type="button">
+    <button type="button" @click="openModal">
       <img class="search-icon" src="../../assets/image/icon/searchIcon.png" alt="SearchIcon">
     </button>
   </section>
@@ -12,9 +12,16 @@
 
 <script>
 export default {
+  name: 'OrderHeader',
+  props: {
+    searchModalShowYn: Boolean
+  },
   methods: {
     goBack () {
       this.$router.go(-1)
+    },
+    openModal () {
+      this.$emit('openModal')
     }
   }
 }
@@ -35,7 +42,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 8vh;
+    height: 50px;
     background-color: #fff;
     border-bottom: 1px solid #ccc;
     padding: 10px;

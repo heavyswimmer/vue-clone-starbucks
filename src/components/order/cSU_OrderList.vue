@@ -1,22 +1,39 @@
 <template>
-  <section class="coffee-menu-list">
-    <div class="coffee-menu" v-for="(value, index) in coffeeList" :key="index">
-      <!-- <img class="coffee-image" src="{{ value.imgUrl }}" alt="coffeeImg"> -->
-      <div class="coffee-image"></div>
+  <SearchModal @closeModal="closeModal" @searchCoffee="getCoffeeList" :searchModalShowYn="searchModalShowYn" class="search-modal" v-show="searchModalShowYn"/>
+  <ul class="coffee-menu-list" v-show="listShowYn">
+    <OrderHeader @openModal="openModal" :searchModalShowYn="searchModalShowYn"/>
+    <li @click="openDetail" class="coffee-menu" v-for="(value, index) in coffeeList" :key="index">
+      <img class="coffee-image" src="{{ value.imgUrl }}" alt="menuImg">
       <div class="coffee-info">
-        <h3 class="coffee-name">{{ value.coffeeName }}</h3>
+        <div class="coffee-title">
+          <h3 class="coffee-name">{{ value.coffeeName }}</h3>
+          <span :class="{'best-label': value.coffeeSticker === 'best', 'new-label': value.coffeeSticker === 'new'}">{{ value.coffeeSticker }}</span>
+        </div>
         <p class="coffee-en-name">{{ value.coffeeEnName }}</p>
         <p class="coffee-price">{{ value.coffeePrice }}원</p>
       </div>
-    </div>
-  </section>
+    </li>
+  </ul>
+  <OrderDetail :coffeeList="coffeeList" v-show="detailShowYn"/>
 </template>
 
 <script>
-/* eslint-disable */
+import OrderHeader from '../../components/layout/cSU_OrderHeader.vue'
+import SearchModal from '../../components/modal/cSU_SearchModal.vue'
+import OrderDetail from '../../components/order/cSU_OrderDetail.vue'
+
 export default {
+  name: 'OrderList',
+  components: {
+    OrderHeader,
+    SearchModal,
+    OrderDetail
+  },
   data () {
     return {
+      searchModalShowYn: false,
+      listShowYn: true,
+      detailShowYn: false,
       coffeeList: {}
     }
   },
@@ -24,10 +41,26 @@ export default {
     this.getCoffeeList()
   },
   methods: {
-    getCoffeeList () {
-      var param = new Object()
-      param.coffeeName = this.coffeeNameVal
-      param.coffeeSticker = this.stickerVal
+    openModal () {
+      this.searchModalShowYn = true
+      // alert(this.searchModalShowYn)
+    },
+    closeModal () {
+      this.searchModalShowYn = false
+      // alert(this.searchModalShowYn)
+    },
+    openDetail () {
+      this.listShowYn = false
+      this.detailShowYn = true
+    },
+    getCoffeeList (coffee) {
+      /* eslint-disable */
+      let param = new Object()
+      if (coffee) { // 선택된 커피값이 있으면
+        param = coffee // 파라미터에 커피값을 넣어라
+      }
+      // param.coffeeName = this.coffeeNameVal
+      // param.coffeeSticker = this.stickerVal
       this.$axios.post('/saeum/startProject/getCoffeeList', param)
       .then((response) => {
         this.coffeeList = response.data
@@ -35,14 +68,19 @@ export default {
       }).catch((error) => {
         console.warn('ERROR!!!!! : ', error)
       })
+      this.searchModalShowYn = false
     }
   }
 }
 </script>
 
 <style scoped>
+  .search-modal {
+    position: absolute;
+    right: 5px;
+    top: 55px;
+  }
   .coffee-menu-list {
-    padding: 60px 0px 30px 0px;
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -50,14 +88,16 @@ export default {
     line-height: 25px;
   }
   .coffee-menu {
+    cursor: pointer;
     width: 100%;
     height: 100px;
-    /* border: 1px solid #ccc; */
-    /* padding: 25px; */
     margin-bottom: 10px;
+    padding-left: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    top: 70px;
   }
   .coffee-info {
     width: 250px;
@@ -65,6 +105,10 @@ export default {
     display: flex;
     flex-direction: column;
     line-height: 30px;
+  }
+  .coffee-title {
+    display: flex;
+    flex-direction: row;
   }
   .coffee-image {
     width: 80px;
@@ -88,5 +132,16 @@ export default {
     font-family: 'AppleSDGothicNeo', sans-serif;
     font-weight: 600;
     font-size: 0.85rem;
+  }
+  .coffee-title span {
+    margin-left: 7px;
+    font-family: 'Cavolini', serif;
+    font-size: 3px;
+  }
+  .best-label {
+    color: #C8443A;
+  }
+  .new-label {
+    color: #00A862;
   }
 </style>
