@@ -2,6 +2,7 @@
   <section class="search-modal-area">
     <input type="text" v-model="coffeeNameVal" placeholder="음료명을 입력하세요">
     <select placeholder="선택" v-model="coffeeStickerVal">
+      <option value="">All</option>
       <option value="New">New</option>
       <option value="Best">Best</option>
     </select>
@@ -37,7 +38,7 @@ export default {
       if (this.coffeeStickerVal !== undefined && this.coffeeStickerVal !== '') {
         param.coffeeSticker = this.coffeeStickerVal
       }
-      alert(JSON.stringify(param))
+      // alert(JSON.stringify(param))
       this.$emit('searchCoffee', param)
     }
   }

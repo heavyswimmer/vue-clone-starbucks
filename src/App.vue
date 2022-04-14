@@ -13,23 +13,28 @@
 }
 @font-face {
   font-family: 'AppleSDGothicNeo';
+  src: url('assets/fonts/AppleSDGothicNeoH.ttf') format('truetype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'AppleSDGothicNeo';
+  src: url('assets/fonts/AppleSDGothicNeoEB.ttf') format('truetype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'AppleSDGothicNeo';
   src: url('assets/fonts/AppleSDGothicNeoB.ttf') format('truetype');
   font-weight: 400;
 }
 @font-face {
   font-family: 'AppleSDGothicNeo';
-  src: url('assets/fonts/AppleSDGothicNeoEB.ttf') format('truetype');
-  font-weight: 600;
-}
-@font-face {
-  font-family: 'AppleSDGothicNeo';
-  src: url('assets/fonts/AppleSDGothicNeoH.ttf') format('truetype');
-  font-weight: 300;
+  src: url('assets/fonts/AppleSDGothicNeoM.ttf') format('truetype');
+  font-weight: 200;
 }
 @font-face {
   font-family: 'AppleSDGothicNeo';
   src: url('assets/fonts/AppleSDGothicNeoL.ttf') format('truetype');
-  font-weight: 200;
+  font-weight: 100;
 }
 @font-face {
   font-family: 'Avenir';

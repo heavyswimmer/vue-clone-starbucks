@@ -2,7 +2,7 @@
   <SearchModal @closeModal="closeModal" @searchCoffee="getCoffeeList" :searchModalShowYn="searchModalShowYn" class="search-modal" v-show="searchModalShowYn"/>
   <ul class="coffee-menu-list" v-show="listShowYn">
     <OrderHeader @openModal="openModal" :searchModalShowYn="searchModalShowYn"/>
-    <li @click="openDetail" class="coffee-menu" v-for="(value, index) in coffeeList" :key="index">
+    <li @click="openDetail(value)" class="coffee-menu" v-for="(value, index) in coffeeList" :key="index">
       <img class="coffee-image" src="{{ value.imgUrl }}" alt="menuImg">
       <div class="coffee-info">
         <div class="coffee-title">
@@ -14,7 +14,7 @@
       </div>
     </li>
   </ul>
-  <OrderDetail :coffeeList="coffeeList" v-show="detailShowYn"/>
+  <OrderDetail :detailInfo="detailInfo" v-if="detailShowYn"/>
 </template>
 
 <script>
@@ -34,7 +34,8 @@ export default {
       searchModalShowYn: false,
       listShowYn: true,
       detailShowYn: false,
-      coffeeList: {}
+      coffeeList: {},
+      detailInfo: ''
     }
   },
   mounted () {
@@ -43,15 +44,14 @@ export default {
   methods: {
     openModal () {
       this.searchModalShowYn = true
-      // alert(this.searchModalShowYn)
     },
     closeModal () {
       this.searchModalShowYn = false
-      // alert(this.searchModalShowYn)
     },
-    openDetail () {
+    openDetail (coffee) {
       this.listShowYn = false
       this.detailShowYn = true
+      this.detailInfo = coffee
     },
     getCoffeeList (coffee) {
       /* eslint-disable */
@@ -79,6 +79,7 @@ export default {
     position: absolute;
     right: 5px;
     top: 55px;
+    z-index: 3;
   }
   .coffee-menu-list {
     display: flex;
