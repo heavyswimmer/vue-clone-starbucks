@@ -1,4 +1,7 @@
 <template>
+  <button @click="backToList" class="left-arrow-icon">
+    <img src="../../assets/image/icon/leftArrowWhite.png" alt="left-arrow">
+  </button>
   <div class="coffee-img">
     <img src="detailInfo.imgUrl" alt="coffee-img">
   </div>
@@ -31,12 +34,33 @@ export default {
   name: 'OrderDetail',
   props: {
     detailInfo: Object
+  },
+  methods: {
+    backToList () {
+      this.$emit('backToList')
+    }
   }
 }
 </script>
 
 <style scoped>
+  .left-arrow-icon {
+    cursor: pointer;
+    padding: 20px 0px 0px 15px;
+    position: fixed;
+    display: flex;
+    align-self: center;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+  }
+  .left-arrow-icon img {
+    width: 17px;
+    height: 17px;
+  }
   .coffee-img {
+    background-color: #ccc;
     width: 100%;
     height: 35vh;
     border: 1px solid #ccc;

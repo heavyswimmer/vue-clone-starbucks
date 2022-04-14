@@ -1,7 +1,7 @@
 <template>
   <SearchModal @closeModal="closeModal" @searchCoffee="getCoffeeList" :searchModalShowYn="searchModalShowYn" class="search-modal" v-show="searchModalShowYn"/>
   <ul class="coffee-menu-list" v-show="listShowYn">
-    <OrderHeader @openModal="openModal" :searchModalShowYn="searchModalShowYn"/>
+    <OrderHeader class="order-header" @openModal="openModal" :searchModalShowYn="searchModalShowYn"/>
     <li @click="openDetail(value)" class="coffee-menu" v-for="(value, index) in coffeeList" :key="index">
       <img class="coffee-image" src="{{ value.imgUrl }}" alt="menuImg">
       <div class="coffee-info">
@@ -14,7 +14,7 @@
       </div>
     </li>
   </ul>
-  <OrderDetail :detailInfo="detailInfo" v-if="detailShowYn"/>
+  <OrderDetail @backToList="backToList" :detailInfo="detailInfo" v-if="detailShowYn"/>
 </template>
 
 <script>
@@ -53,6 +53,10 @@ export default {
       this.detailShowYn = true
       this.detailInfo = coffee
     },
+    backToList () {
+      this.listShowYn = true
+      this.detailShowYn = false
+    },
     getCoffeeList (coffee) {
       /* eslint-disable */
       let param = new Object()
@@ -75,6 +79,9 @@ export default {
 </script>
 
 <style scoped>
+  .order-header {
+    z-index: 3;
+  }
   .search-modal {
     position: absolute;
     right: 5px;
