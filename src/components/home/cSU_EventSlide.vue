@@ -1,13 +1,15 @@
 <template>
   <section class="event-list-area">
-    <h2>What's New</h2>
+    <div class="list-title-container">
+      <h2 class="list-title">What's New</h2>
+      <span>See all</span>
+    </div>
     <div class="event-container">
       <ul :style="setTotalWidthStyle" class="content-box">
         <li :style="setWidthStyle" class="content" v-for="(value, index) in contentsList" :key="index">
-          <img class="content-image" src="{{ value.imgUrl }}" alt="eventImg">
-          <strong class="content-title">{{ value.title }}</strong>
+          <img class="content-image" :src="value.imgPath" alt="eventImg">
+          <strong class="content-title">{{ checkTitleLength(value.title) }}</strong>
           <p class="content-body">{{ value.body }}</p>
-          <!-- <span>{{ value.coffeeSticker }}</span> -->
         </li>
       </ul>
     </div>
@@ -15,7 +17,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 export default {
   data () {
     return {
@@ -39,7 +40,12 @@ export default {
     }
   },
   methods: {
+    checkTitleLength (value) {
+      const title = value
+      return title.length > 16 ? title.replace(title.substr(17), '⋯') : title
+    },
     getContentsList () {
+      /* eslint-disable */
       let param = new Object()
       this.$axios.post('/saeum/startProject/getContentsList', param)
       .then((response) => {
@@ -54,18 +60,29 @@ export default {
 </script>
 
 <style scoped>
+  .list-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .list-title {
+    /* padding-left: 10px; */
+    font-family: 'Avenir Black';
+    text-align: left;
+  }
+  .list-title-container span {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 200;
+    color: #00A862;
+    margin-right: 25px;
+  }
   .event-list-area {
     width: 100%;
     height: 100vh;
     padding: 10px 0px 10px 23px;
     /* border: 1px solid #000; */
-  }
-  .event-list-area h2 {
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  ul {
-    list-style-type: none;
   }
   .event-container {
     margin: 0 auto;
@@ -73,7 +90,6 @@ export default {
     overflow-x: scroll;
     overflow-y: hidden;
     width: 100%;
-    height: 180px;
   }
   .content-box {
     width: var(--totalWidth);
@@ -86,22 +102,28 @@ export default {
   }
   .content {
     width: var(--contentsBoxWidth);
-    padding: 10px 10px 20px 10px;
+    height: 50%;
+    padding: 10px 10px 20px 0px;
     margin-right: 10px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
   }
   .content-image {
-    height: 200px;
-    border: 1px solid #ccc;
+    width: 50%;
+    height: 50%;
     border-radius: 5px;
+    margin-bottom: 10px;
   }
   .content-title {
+    /* width: 100%; */
+    font-family: 'Avenir Black', 'AppleSDGothicNeo';
     font-size: 1.05rem;
+    font-weight: 500;
     line-height: 35px;
   }
   .content-body {
+    width: 50%;
     font-weight: 200;
     font-size: 0.8rem;
     color: rgb(95, 95, 95);

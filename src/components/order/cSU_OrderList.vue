@@ -1,9 +1,9 @@
 <template>
-  <SearchModal @closeModal="closeModal" @searchCoffee="getCoffeeList" :searchModalShowYn="searchModalShowYn" class="search-modal" v-show="searchModalShowYn"/>
+  <SearchModal @closeModal="closeModal" @searchCoffee="getCoffeeList" :modalShowYn="modalShowYn" class="search-modal" v-show="modalShowYn"/>
   <ul class="coffee-menu-list" v-show="listShowYn">
-    <OrderHeader class="order-header" @openModal="openModal" :searchModalShowYn="searchModalShowYn"/>
+    <OrderHeader class="order-header" @openModal="openModal" :modalShowYn="modalShowYn"/>
     <li @click="openDetail(value)" class="coffee-menu" v-for="(value, index) in coffeeList" :key="index">
-      <img class="coffee-image" src="{{ value.imgUrl }}" alt="menuImg">
+      <img class="coffee-image" :src="value.imgPath" alt="menuImg">
       <div class="coffee-info">
         <div class="coffee-title">
           <h3 class="coffee-name">{{ value.coffeeName }}</h3>
@@ -14,7 +14,7 @@
       </div>
     </li>
   </ul>
-  <OrderDetail @backToList="backToList" :detailInfo="detailInfo" v-if="detailShowYn"/>
+  <OrderDetail class="order-detail-info" @backToList="backToList" :detailInfo="detailInfo" v-if="detailShowYn"/>
 </template>
 
 <script>
@@ -31,7 +31,7 @@ export default {
   },
   data () {
     return {
-      searchModalShowYn: false,
+      modalShowYn: false,
       listShowYn: true,
       detailShowYn: false,
       coffeeList: {},
@@ -43,13 +43,15 @@ export default {
   },
   methods: {
     openModal () {
-      this.searchModalShowYn = true
+      this.modalShowYn = true
     },
     closeModal () {
-      this.searchModalShowYn = false
+      this.modalShowYn = false
     },
     openDetail (coffee) {
+      // 수정 요
       this.listShowYn = false
+      this.modalShowYn = false
       this.detailShowYn = true
       this.detailInfo = coffee
     },
@@ -72,13 +74,18 @@ export default {
       }).catch((error) => {
         console.warn('ERROR!!!!! : ', error)
       })
-      this.searchModalShowYn = false
+      this.modalShowYn = false
     }
   }
 }
 </script>
 
 <style scoped>
+  .order-detail-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   .order-header {
     z-index: 3;
   }
@@ -87,6 +94,9 @@ export default {
     right: 5px;
     top: 55px;
     z-index: 3;
+  }
+  .order-detail-info {
+    position: absolute;
   }
   .coffee-menu-list {
     display: flex;
@@ -121,7 +131,6 @@ export default {
   .coffee-image {
     width: 80px;
     height: 80px;
-    border: 1px solid #ccc;
     border-radius: 50%;
     margin-right: 15px;
   }

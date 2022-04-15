@@ -1,5 +1,5 @@
 <template>
-  <button class="commonBtn">{{ btnName }}</button>
+  <button class="common-btn">{{ btnName }}</button>
 </template>
 
 <script>
@@ -11,17 +11,18 @@ export default {
 </script>
 
 <style scoped>
-  .commonBtn {
+  .common-btn {
     font-family: 'AppleSDGothicNeo', sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 33px;
+    height: 37px;
     background-color: #00A862;
     color: #fff;
     border: none;
     border-radius: 30px;
+    font-size: 14px;
   }
 </style>

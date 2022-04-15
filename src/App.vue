@@ -37,17 +37,17 @@
   font-weight: 100;
 }
 @font-face {
-  font-family: 'Avenir';
+  font-family: 'Avenir Black';
   src: url('assets/fonts/AvenirLTStd-Black.otf') format('opentype');
   font-weight: 900;
 }
 @font-face {
-  font-family: 'Avenir';
+  font-family: 'Avenir Book';
   src: url('assets/fonts/AvenirLTStd-Book.otf') format('opentype');
   font-weight: 400;
 }
 @font-face {
-  font-family: 'Avenir';
+  font-family: 'Avenir Roman';
   src: url('assets/fonts/AvenirLTStd-Roman.otf') format('opentype');
   font-weight: 500;
 }
@@ -79,7 +79,7 @@ ul {
 
 @media screen and (min-width: 768px) {
   .app-main {
-    width: 80%;
+    width: 60%;
   }
 }
 </style>

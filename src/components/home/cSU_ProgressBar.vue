@@ -47,7 +47,7 @@ export default {
   .progress-color-bar {
     background-color: #00A862;
     border-radius: 30px;
-    width: 10%;
+    width: 0%;
     height: 8px;
   }
   .point {
@@ -62,5 +62,14 @@ export default {
   .emphasis {
     font-size: 1.4rem;
     color: #00A862;
+  }
+
+  @media screen and (min-width: 768px) {
+    .progress-bar {
+      width: 600px;
+    }
+    .progress-color-bar {
+      width: 80px;
+    }
   }
 </style>

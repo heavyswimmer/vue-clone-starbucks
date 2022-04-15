@@ -1,8 +1,8 @@
 <template>
-  <section class="search-modal-area">
+  <section class="search-modal-container">
     <input type="text" v-model="coffeeNameVal" placeholder="음료명을 입력하세요">
     <select placeholder="선택" v-model="coffeeStickerVal">
-      <option value="">All</option>
+      <option value="">전체</option>
       <option value="New">New</option>
       <option value="Best">Best</option>
     </select>
@@ -17,7 +17,7 @@
 export default {
   name: 'SearchModal',
   props: {
-    searchModalShowYn: Boolean
+    modalShowYn: Boolean
   },
   data () {
     return {
@@ -55,7 +55,7 @@ export default {
     background-color: #eee;
     font-weight: 400;
   }
-  .search-modal-area {
+  .search-modal-container {
     background-color: #fff;
     width: 300px;
     height: 170px;

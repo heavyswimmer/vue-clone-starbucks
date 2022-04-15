@@ -1,5 +1,5 @@
 <template>
-  <section class="order-header">
+  <header class="order-header">
     <button type="button" @click="goBack">
       <img class="left-arrow-icon" src="../../assets/image/icon/leftarrowIcon.png" alt="LeftArrowIcon"/>
     </button>
@@ -7,14 +7,14 @@
     <button type="button" @click="openModal">
       <img class="search-icon" src="../../assets/image/icon/searchIcon.png" alt="SearchIcon">
     </button>
-  </section>
+  </header>
 </template>
 
 <script>
 export default {
   name: 'OrderHeader',
   props: {
-    searchModalShowYn: Boolean
+    modalShowYn: Boolean
   },
   methods: {
     goBack () {
@@ -35,7 +35,7 @@ export default {
     display: flex;
     justify-content: center;
   }
-  .order-header {
+  header {
     position: fixed;
     left: 0;
     display: flex;

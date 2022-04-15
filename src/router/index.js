@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../pages/pSU_HomeView.vue'
-import OrderView from '../pages/pSU_OrderView.vue'
+import homeView from '../pages/pSU_homeView.vue'
+import orderView from '../pages/pSU_orderView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: homeView
   },
   {
     path: '/order',
     name: 'order',
-    component: OrderView
+    component: orderView
   }
 ]
 

@@ -2,48 +2,69 @@
   <button @click="backToList" class="left-arrow-icon">
     <img src="../../assets/image/icon/leftArrowWhite.png" alt="left-arrow">
   </button>
-  <div class="coffee-img">
-    <img src="detailInfo.imgUrl" alt="coffee-img">
-  </div>
-  <section class="coffee-detail-container">
-    <div class="coffee-title-container">
-      <h3 class="coffee-title">{{ detailInfo.coffeeName }}</h3>
-      <span>{{ detailInfo.coffeeSticker }}</span>
+  <section class="order-detail-container">
+    <img class="coffee-img" :src="detailInfo.imgPath" alt="coffee-img">
+    <div class="detail-contents-container">
+      <div class="coffee-title-container">
+        <h3 class="coffee-title">{{ detailInfo.coffeeName }}</h3>
+        <span :class="{'best-label': detailInfo.coffeeSticker === 'best', 'new-label': detailInfo.coffeeSticker === 'new'}">{{ detailInfo.coffeeSticker }}</span>
+      </div>
+      <p class="coffee-en-name">
+        {{ detailInfo.coffeeEnName }}
+      </p>
+      <p class="coffee-detail">
+        {{ detailInfo.coffeeDetail }}
+      </p>
+      <p class="coffee-price">
+        {{ detailInfo.coffeePrice }}원
+      </p>
+      <div class="coffee-type">
+        {{ detailInfo.coffeeType }}
+      </div>
+      <p :class="{'coffee-comment': detailInfo.comment !== null}" v-html="detailInfo.comment"></p>
     </div>
-    <p class="coffee-en-name">
-      {{ detailInfo.coffeeEnName }}
-    </p>
-    <p class="coffee-detail">
-      {{ detailInfo.coffeeDetail }}
-    </p>
-    <p class="coffee-price">
-      {{ detailInfo.coffeePrice }}원
-    </p>
-    <div class="coffee-type">
-      {{ detailInfo.coffeeType }}
-    </div>
-    <p class="coffee-comment" v-html="detailInfo.comment"></p>
   </section>
-  <div class="order-btn-container">
-    <cBtn class="order-btn" btnName="주문하기"></cBtn>
-  </div>
+  <section class="order-btn-container">
+    <cBtn @click="openModal" class="order-btn" btnName="주문하기"></cBtn>
+  </section>
+  <OptionModal @closeModal="closeModal" class="option-modal" :detailInfo="detailInfo" v-if="optionShowYn"/>
 </template>
 
 <script>
+import OptionModal from '../modal/cSU_OptionModal.vue'
+
 export default {
   name: 'OrderDetail',
   props: {
     detailInfo: Object
   },
+  components: {
+    OptionModal
+  },
+  data () {
+    return {
+      optionShowYn: false
+    }
+  },
   methods: {
     backToList () {
       this.$emit('backToList')
+    },
+    openModal () {
+      this.optionShowYn = true
+    },
+    closeModal () {
+      this.optionShowYn = false
     }
   }
 }
 </script>
 
 <style scoped>
+  .order-detail-container {
+    background-color: #fff;
+    height: 100%;
+  }
   .left-arrow-icon {
     cursor: pointer;
     padding: 20px 0px 0px 15px;
@@ -60,21 +81,20 @@ export default {
     height: 17px;
   }
   .coffee-img {
-    background-color: #ccc;
     width: 100%;
-    height: 35vh;
-    border: 1px solid #ccc;
+    height: 50%;
   }
   .coffee-title {
     font-size: 20px;
     font-weight: 500;
   }
-  .coffee-detail-container {
+  .detail-contents-container {
     padding: 20px;
     text-align: left;
   }
   .coffee-title-container {
     display: flex;
+    align-items: center;
     margin-bottom: 3px;
   }
   .coffee-en-name {
@@ -117,8 +137,29 @@ export default {
     align-items: center;
   }
   .order-btn {
-    width: 300px;
+    width: 320px;
     position: relative;
     bottom: 5px;
+  }
+  .coffee-title-container span {
+    margin-left: 7px;
+    font-family: 'Cavolini', serif;
+    font-size: 3px;
+  }
+  .best-label {
+    color: #C8443A;
+  }
+  .new-label {
+    color: #00A862;
+  }
+
+  @media screen and (min-width: 768px) {
+    .order-btn-container {
+      width: 60%;
+      left: 303px;
+    }
+    .order-btn {
+      width: 90%;
+    }
   }
 </style>
