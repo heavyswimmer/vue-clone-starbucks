@@ -47,7 +47,7 @@ export default {
   .progress-color-bar {
     background-color: var(--green);
     border-radius: 30px;
-    width: 0%;
+    width: 10%;
     height: 8px;
   }
   .point {

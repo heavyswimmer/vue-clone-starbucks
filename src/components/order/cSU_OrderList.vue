@@ -141,7 +141,7 @@ export default {
   }
   .coffee-en-name {
     color: #aaa;
-    font-weight: 200;
+    font-weight: 100;
     font-size: 0.8rem;
     line-height: 15px;
   }
@@ -160,5 +160,28 @@ export default {
   }
   .new-label {
     color: var(--green);
+  }
+
+  @media screen and (min-width: 768px) {
+    .coffee-menu {
+      margin-bottom: 30px;
+    }
+    .coffee-image {
+      width: 100px;
+      height: 100px;
+      margin-right: 30px;
+    }
+    .coffee-name {
+      font-family: 'AppleSDGothicNeo', sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+    }
+    .coffee-en-name {
+      font-size: 0.9rem;
+      line-height: 15px;
+    }
+    .coffee-price {
+      font-size: 1rem;
+    }
   }
 </style>

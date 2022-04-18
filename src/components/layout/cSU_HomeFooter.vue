@@ -21,7 +21,7 @@ export default {
    left: 0;
    background-color: #f6f6f6;
    opacity: 0.9;
-   padding-top: 5px;
+   padding: 5px 0px 5px 0px;
  }
 
  .footer-icon {

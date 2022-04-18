@@ -30,7 +30,7 @@ export default {
   computed: {
     setWidthStyle () {
       return {
-        '--contentsBoxWidth': this.contentsBoxWidth + 'px'
+        '--contentsBoxWidth': this.contentsBoxWidth - 250 + 'px'
       }
     },
     setTotalWidthStyle () {
@@ -104,13 +104,13 @@ export default {
     width: var(--contentsBoxWidth);
     height: 50%;
     padding: 10px 10px 20px 0px;
-    margin-right: 10px;
+    margin-right: 5px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
   }
   .content-image {
-    width: 50%;
+    width: 100%;
     height: 50%;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -123,7 +123,7 @@ export default {
     line-height: 35px;
   }
   .content-body {
-    width: 50%;
+    width: 100%;
     font-weight: 200;
     font-size: 0.8rem;
     color: rgb(95, 95, 95);

@@ -18,9 +18,9 @@
       <p class="coffee-price">
         {{ detailInfo.coffeePrice }}원
       </p>
-      <div class="coffee-type">
-        {{ detailInfo.coffeeType }}
-      </div>
+      <button :class="{'hot-only-type': detailInfo.coffeeType === 'hot', 'iced-only-type': detailInfo.coffeeType === 'ice'}" v-if="detailInfo.coffeeType === 'hot' || detailInfo.coffeeType === 'ice'" class="coffee-type"></button>
+      <button class="both-hot-type" v-if="detailInfo.coffeeType === 'both'">HOT</button>
+      <button class="both-iced-type" v-if="detailInfo.coffeeType === 'both'">ICED</button>
       <p :class="{'coffee-comment': detailInfo.comment !== null}" v-html="detailInfo.comment"></p>
     </div>
   </section>
@@ -43,7 +43,8 @@ export default {
   },
   data () {
     return {
-      optionShowYn: false
+      optionShowYn: false,
+      type: ''
     }
   },
   methods: {
@@ -56,6 +57,13 @@ export default {
     closeModal () {
       this.optionShowYn = false
     }
+    // getCoffeeType (type) {
+    //   if (type === 'hot') {
+    //     return '../../assets/image/hot-only.png'
+    //   } else if (type === 'ice') {
+    //     return '../../assets/image/iced-only.png'
+    //   }
+    // }
   }
 }
 </script>
@@ -124,7 +132,54 @@ export default {
     background-color: #F7F7F7;
   }
   .coffee-type {
-    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid var(--light-grey);
+    border-radius: 30px;
+    padding: 7px;
+    margin-bottom: 15px;
+  }
+  .hot-only-type {
+    width: 100%;
+  }
+  .iced-only-type {
+    width: 100%;
+  }
+  .hot-only-type::after {
+    content: 'HOT ONLY';
+    color: var(--red);
+  }
+  .iced-only-type::after {
+    content: 'ICED ONLY';
+    color: var(--blue);
+  }
+  .both-hot-type {
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid var(--light-grey);
+    border-radius: 30px 0px 0px 30px;
+    padding: 7px;
+    margin-bottom: 15px;
+    color: var(--dark-grey);
+    border-right: none;
+    /* color: var(--red); */
+  }
+  .both-iced-type {
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid var(--light-grey);
+    border-radius: 0px 30px 30px 0px;
+    padding: 7px;
+    margin-bottom: 15px;
+    color: var(--dark-grey);
+    /* color: var(--blue); */
+  }
+  .both-hot-type:focus {
+    background-color: var(--red);
+    color: #fff;
+  }
+  .both-iced-type:focus {
+    background-color: var(--blue);
+    color: #fff;
   }
   .order-btn-container {
     position: fixed;

@@ -1,5 +1,5 @@
 <template>
-  <header class="order-header">
+  <header class="navbar" :class="{ 'navbar--hidden': !showNavBar }">
     <button type="button" @click="goBack">
       <img class="left-arrow-icon" src="../../assets/image/icon/left-arrow.png" alt="LeftArrowIcon"/>
     </button>
@@ -16,12 +16,35 @@ export default {
   props: {
     modalShowYn: Boolean
   },
+  data () {
+    return {
+      showNavBar: true,
+      lastScrollPosition: 0
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.onScroll)
+  },
+  beforeUnmount () {
+    window.removeEventListener('scroll', this.onScroll)
+  },
   methods: {
     goBack () {
       this.$router.go(-1)
     },
     openModal () {
       this.$emit('openModal')
+    },
+    onScroll () {
+      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+      if (currentScrollPosition < 0) {
+        return
+      }
+      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
+        return
+      }
+      this.showNavBar = currentScrollPosition < this.lastScrollPosition
+      this.lastScrollPosition = currentScrollPosition
     }
   }
 }
@@ -38,6 +61,7 @@ export default {
   header {
     position: fixed;
     left: 0;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,6 +70,15 @@ export default {
     background-color: #fff;
     border-bottom: 1px solid #ccc;
     padding: 10px;
+  }
+  .navbar {
+    /* box-shadow: 0 2px 15px rgba(71, 120, 120, 0.5); */
+    transform: translate3d(0, 0, 0);
+    transition: 0.1s all ease-out;
+  }
+  .navbar.navbar--hidden {
+    /* box-shadow: none; */
+    transform: translate3d(0, -100%, 0);
   }
   .header-title {
     font-size: 1.2rem;

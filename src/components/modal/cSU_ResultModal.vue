@@ -3,7 +3,7 @@
   <section class="order-result-container">
     <h3 class="result-title">주문 결과</h3>
     <div class="coffee-info">
-      <p>{{ detailInfo.coffeeName }}</p>
+      <p class="coffee-name">{{ detailInfo.coffeeName }}</p>
       <span class="coffee-volume">{{ volume }}</span>
     </div>
     <ul class="option-info">
@@ -64,6 +64,9 @@ export default {
     font-size: 20px;
     text-align: left;
     margin-bottom: 10px;
+  }
+  .coffee-name {
+    font-size: 16px;
   }
   .coffee-info {
     font-size: 18px;

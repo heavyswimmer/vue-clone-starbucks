@@ -55,6 +55,10 @@ export default {
     background-color: #eee;
     font-weight: 400;
   }
+  .background-area {
+    width: 100%;
+    height: 100%;
+  }
   .search-modal-container {
     background-color: #fff;
     width: 300px;
@@ -64,6 +68,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 20px;
+    z-index: 9;
   }
   .btn-container {
     display: flex;
