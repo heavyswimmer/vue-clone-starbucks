@@ -37,9 +37,9 @@
     <section class="payment-container">
       <div class="calculator">
         <div class="volume-button">
-          <button @click="subtractVolume(totalPrice)">-</button>
+          <button @click="subtractVolume(sizeSelectedPrice)">-</button>
           <p>{{ volume }}</p>
-          <button @click="addVolume(totalPrice)">+</button>
+          <button @click="addVolume(sizeSelectedPrice)">+</button>
         </div>
         <p class="coffee-price">{{ totalPrice }}원</p>
       </div>
@@ -95,10 +95,6 @@ export default {
       this.resultModalShowYn = false
     },
     getSelectedSize (data) {
-      // if (data === undefined || data === '') {
-      //   this.optionSelected.size = this.size[0]
-      //   console.log(this.optionSelected)
-      // } else {
       this.optionSelected.size = data
       console.log(this.optionSelected)
       if (data === 'Grande') {
@@ -120,11 +116,13 @@ export default {
     addVolume (price) {
       this.volume++
       this.totalPrice = price * this.volume
+      console.log(this.volume, this.totalPrice, price)
     },
     subtractVolume (price) {
       if (this.volume > 1) {
         this.volume--
-        this.totalPrice = this.sizeSelectedPrice * this.volume
+        this.totalPrice = price * this.volume
+        console.log(this.volume, this.totalPrice, price)
       }
     }
   }
