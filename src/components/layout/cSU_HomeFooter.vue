@@ -1,10 +1,10 @@
 <template>
   <footer>
-    <router-link to="/"><img src="../../assets/image/icon/homeIconSelected.png" alt="HomeIcon" class="footer-icon"></router-link>
-    <img src="../../assets/image/icon/payIcon.png" alt="PayIcon" class="footer-icon">
-    <router-link to="/order"><img src="../../assets/image/icon/orderIcon.png" alt="OrderIcon" class="footer-icon"></router-link>
-    <img src="../../assets/image/icon/giftIcon.png" alt="GiftIcon" class="footer-icon">
-    <img src="../../assets/image/icon/otherIcon.png" alt="OtherIcon" class="footer-icon last">
+    <router-link to="/"><img src="../../assets/image/icon/home.png" alt="HomeIcon" class="footer-icon"></router-link>
+    <img src="../../assets/image/icon/pay.png" alt="PayIcon" class="footer-icon">
+    <router-link to="/order"><img src="../../assets/image/icon/order.png" alt="OrderIcon" class="footer-icon"></router-link>
+    <img src="../../assets/image/icon/gift.png" alt="GiftIcon" class="footer-icon">
+    <img src="../../assets/image/icon/other.png" alt="OtherIcon" class="footer-icon last">
   </footer>
 </template>
 

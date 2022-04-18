@@ -19,7 +19,7 @@ export default {
     justify-content: center;
     align-items: center;
     height: 37px;
-    background-color: #00A862;
+    background-color: var(--green);
     color: #fff;
     border: none;
     border-radius: 30px;

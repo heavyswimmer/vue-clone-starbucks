@@ -74,11 +74,11 @@ export default {
     width: 50px;
     height: 30px;
     border-radius: 30px;
-    border: 2px solid #00A862;
+    border: 2px solid var(--green);
   }
   .cancel-btn {
     cursor: pointer;
-    color: #00A862;
+    color: var(--green);
     margin-right: 7px;
   }
 </style>

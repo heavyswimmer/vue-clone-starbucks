@@ -1,0 +1,56 @@
+* {
+  font-family: 'Avenir', 'AppleSDGothicNeo', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  text-decoration-line: none;
+  letter-spacing: -0.01;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+@font-face {
+  font-family: 'AppleSDGothicNeo';
+  src: url('../fonts/AppleSDGothicNeoH.ttf') format('truetype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'AppleSDGothicNeo';
+  src: url('../fonts/AppleSDGothicNeoEB.ttf') format('truetype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'AppleSDGothicNeo';
+  src: url('../fonts/AppleSDGothicNeoB.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'AppleSDGothicNeo';
+  src: url('../fonts/AppleSDGothicNeoM.ttf') format('truetype');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'AppleSDGothicNeo';
+  src: url('../fonts/AppleSDGothicNeoL.ttf') format('truetype');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'Avenir Black';
+  src: url('../fonts/AvenirLTStd-Black.otf') format('opentype');
+  font-weight: 900;
+}
+@font-face {
+  font-family: 'Avenir Book';
+  src: url('../fonts/AvenirLTStd-Book.otf') format('opentype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Avenir Roman';
+  src: url('../fonts/AvenirLTStd-Roman.otf') format('opentype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Cavolini';
+  src: url('../fonts/CAVOLINIITALIC.TTF') format('truetype');
+  font-weight: normal;
+}

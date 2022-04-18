@@ -75,7 +75,7 @@ export default {
     cursor: pointer;
     font-size: 16px;
     font-weight: 200;
-    color: #00A862;
+    color: var(--green);
     margin-right: 25px;
   }
   .event-list-area {

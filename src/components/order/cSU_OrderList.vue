@@ -156,9 +156,9 @@ export default {
     font-size: 3px;
   }
   .best-label {
-    color: #C8443A;
+    color: var(--red);
   }
   .new-label {
-    color: #00A862;
+    color: var(--green);
   }
 </style>

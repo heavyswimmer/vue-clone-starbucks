@@ -1,6 +1,6 @@
 <template>
   <button @click="backToList" class="left-arrow-icon">
-    <img src="../../assets/image/icon/leftArrowWhite.png" alt="left-arrow">
+    <img src="../../assets/image/icon/left-arrow-white.png" alt="left-arrow">
   </button>
   <section class="order-detail-container">
     <img class="coffee-img" :src="detailInfo.imgPath" alt="coffee-img">
@@ -98,6 +98,8 @@ export default {
     margin-bottom: 3px;
   }
   .coffee-en-name {
+    font-weight: 100;
+    font-size: 13px;
     color: #9E9E9E;
     font-size: 13px;
     margin-bottom: 10px;
@@ -106,7 +108,7 @@ export default {
     margin-bottom: 20px;
     font-size: 13px;
     font-weight: 200;
-    color: #676767;
+    color: var(--dark-grey);
   }
   .coffee-price {
     /* font-family: 'Avenir', 'AppleSDGothicNeo', sans-serif; */
@@ -118,7 +120,7 @@ export default {
     font-size: 12px;
     font-weight: 200;
     padding: 15px;
-    color: #676767;
+    color: var(--dark-grey);
     background-color: #F7F7F7;
   }
   .coffee-type {
@@ -147,10 +149,10 @@ export default {
     font-size: 3px;
   }
   .best-label {
-    color: #C8443A;
+    color: var(--red);
   }
   .new-label {
-    color: #00A862;
+    color: var(--green);
   }
 
   @media screen and (min-width: 768px) {

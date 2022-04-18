@@ -29,7 +29,7 @@ export default {
   }
   .progress-status {
     font-size: 0.9rem;
-    color: #00A862;
+    color: var(--green);
     /* padding-left: 20px; */
     text-align: left;
     margin-bottom: 10px;
@@ -45,7 +45,7 @@ export default {
     height: 8px;
   }
   .progress-color-bar {
-    background-color: #00A862;
+    background-color: var(--green);
     border-radius: 30px;
     width: 0%;
     height: 8px;
@@ -61,7 +61,7 @@ export default {
   }
   .emphasis {
     font-size: 1.4rem;
-    color: #00A862;
+    color: var(--green);
   }
 
   @media screen and (min-width: 768px) {

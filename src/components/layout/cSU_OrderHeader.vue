@@ -1,11 +1,11 @@
 <template>
   <header class="order-header">
     <button type="button" @click="goBack">
-      <img class="left-arrow-icon" src="../../assets/image/icon/leftarrowIcon.png" alt="LeftArrowIcon"/>
+      <img class="left-arrow-icon" src="../../assets/image/icon/left-arrow.png" alt="LeftArrowIcon"/>
     </button>
     <p class="header-title">음료</p>
     <button type="button" @click="openModal">
-      <img class="search-icon" src="../../assets/image/icon/searchIcon.png" alt="SearchIcon">
+      <img class="search-icon" src="../../assets/image/icon/search.png" alt="SearchIcon">
     </button>
   </header>
 </template>
