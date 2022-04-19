@@ -1,5 +1,6 @@
 <template>
   <SearchModal @closeModal="closeModal" @searchCoffee="getCoffeeList" :modalShowYn="modalShowYn" class="search-modal" v-show="modalShowYn"/>
+  <div @click="closeModal" class="background" v-show="modalShowYn"></div>
   <ul class="coffee-menu-list" v-show="listShowYn">
     <OrderHeader class="order-header" @openModal="openModal" :modalShowYn="modalShowYn"/>
     <li @click="openDetail(value)" class="coffee-menu" v-for="(value, index) in coffeeList" :key="index">
@@ -10,7 +11,7 @@
           <span :class="{'best-label': value.coffeeSticker === 'best', 'new-label': value.coffeeSticker === 'new'}">{{ value.coffeeSticker }}</span>
         </div>
         <p class="coffee-en-name">{{ value.coffeeEnName }}</p>
-        <p class="coffee-price">{{ value.coffeePrice }}원</p>
+        <p class="coffee-price">{{ getPriceWithComma(value.coffeePrice) }}원</p>
       </div>
     </li>
   </ul>
@@ -49,7 +50,6 @@ export default {
       this.modalShowYn = false
     },
     openDetail (coffee) {
-      // 수정 요
       this.listShowYn = false
       this.modalShowYn = false
       this.detailShowYn = true
@@ -75,28 +75,37 @@ export default {
         console.warn('ERROR!!!!! : ', error)
       })
       this.modalShowYn = false
+    },
+    getPriceWithComma (price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
   }
 }
 </script>
 
 <style scoped>
+  .background {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 7;
+  }
   .order-detail-info {
     position: absolute;
     top: 0;
     left: 0;
   }
   .order-header {
-    z-index: 3;
+    z-index: 9;
   }
   .search-modal {
     position: absolute;
     right: 5px;
     top: 55px;
-    z-index: 3;
-  }
-  .order-detail-info {
-    position: absolute;
+    z-index: 8;
   }
   .coffee-menu-list {
     display: flex;

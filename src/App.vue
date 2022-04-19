@@ -1,7 +1,7 @@
 <template>
-  <section class="app-main">
+  <main>
     <router-view/>
-  </section>
+  </main>
 </template>
 
 <style>
@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
 }
-.app-main {
+main {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -25,7 +25,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .app-main {
+  main {
     width: 60%;
   }
 }

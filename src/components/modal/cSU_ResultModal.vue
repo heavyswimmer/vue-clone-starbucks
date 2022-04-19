@@ -11,7 +11,7 @@
       <li>{{ optionSelected.cup }}</li>
     </ul>
     <hr>
-    <p class="total-price">{{ totalPrice }}원</p>
+    <p class="total-price">{{ getPriceWithComma(totalPrice) }}원</p>
     <cBtn class="close-btn" @click="closeResult" btnName="확인"></cBtn>
   </section>
 </template>
@@ -28,6 +28,9 @@ export default {
   methods: {
     closeResult () {
       this.$emit('closeResult')
+    },
+    getPriceWithComma (price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
   }
 }
@@ -51,7 +54,7 @@ export default {
     height: 40%;
     background-color: #fff;
     border-radius: 5px;
-    padding: 20px;
+    padding: 0px 20px;
     font-weight: 200;
   }
   hr {

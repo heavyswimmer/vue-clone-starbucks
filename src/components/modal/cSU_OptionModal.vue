@@ -9,18 +9,18 @@
     <div class="size-option-container">
       <h3 class="option-title">사이즈</h3>
       <div class="option size">
-        <button :class="{'size-selected': optionSelected.size === 'Tall'}" @click="getSelectedSize(size[0])">
-          <img id="tall" src="../../assets/image/icon/cup.png" alt="tall">
+        <button :class="{'size--selected': optionSelected.size === 'Tall'}" @click="getSelectedSize(size[0])">
+          <img id="tall" src="../../assets/images/icon/cup.png" alt="tall">
           <p>{{ size[0] }}</p>
           <p class="size-measure">355ml</p>
         </button>
-        <button :class="{'size-selected': optionSelected.size === 'Grande'}" @click="getSelectedSize(size[1])">
-          <img id="grande" src="../../assets/image/icon/cup.png" alt="grande">
+        <button :class="{'size--selected': optionSelected.size === 'Grande'}" @click="getSelectedSize(size[1])">
+          <img id="grande" src="../../assets/images/icon/cup.png" alt="grande">
           <p>{{ size[1] }}</p>
           <p class="size-measure">473ml</p>
         </button>
-        <button :class="{'size-selected': optionSelected.size === 'Venti'}" @click="getSelectedSize(size[2])">
-          <img id="venti" src="../../assets/image/icon/cup.png" alt="venti">
+        <button :class="{'size--selected': optionSelected.size === 'Venti'}" @click="getSelectedSize(size[2])">
+          <img id="venti" src="../../assets/images/icon/cup.png" alt="venti">
           <p>{{ size[2] }}</p>
           <p class="size-measure">591ml</p>
         </button>
@@ -29,19 +29,19 @@
     <div class="cup-option-container">
       <h3 class="option-title">컵 선택</h3>
       <div class="option cup">
-        <button :class="{'cup-selected': optionSelected.cup === '매장컵'}" @click="getSelectedCup(cup[0])">{{ cup[0] }}</button>
-        <button :class="{'cup-selected': optionSelected.cup === '개인컵'}" @click="getSelectedCup(cup[1])">{{ cup[1] }}</button>
-        <button :class="{'cup-selected': optionSelected.cup === '일회용컵'}" @click="getSelectedCup(cup[2])">{{ cup[2] }}</button>
+        <button :class="{'cup--selected': optionSelected.cup === '매장컵'}" @click="getSelectedCup(cup[0])">{{ cup[0] }}</button>
+        <button :class="{'cup--selected': optionSelected.cup === '개인컵'}" @click="getSelectedCup(cup[1])">{{ cup[1] }}</button>
+        <button :class="{'cup--selected': optionSelected.cup === '일회용컵'}" @click="getSelectedCup(cup[2])">{{ cup[2] }}</button>
       </div>
     </div>
     <section class="payment-container">
       <div class="calculator">
         <div class="volume-button">
-          <button @click="subtractVolume(sizeSelectedPrice)">-</button>
+          <button :class="{'button--disabled': volume === 1}" @click="subtractVolume(sizeSelectedPrice)">-</button>
           <p>{{ volume }}</p>
           <button @click="addVolume(sizeSelectedPrice)">+</button>
         </div>
-        <p class="coffee-price">{{ totalPrice }}원</p>
+        <p class="coffee-price">{{ getPriceWithComma(totalPrice) }}원</p>
       </div>
       <div class="payment-btn-container">
         <button class="add-cart-btn">담기</button>
@@ -70,7 +70,7 @@ export default {
       optionSelected: { size: 'Tall' },
       volume: 1,
       sizeSelectedPrice: 0,
-      totalPrice: this.detailInfo.coffeePrice,
+      totalPrice: parseInt(this.detailInfo.coffeePrice),
       resultModalShowYn: false
     }
   },
@@ -96,7 +96,7 @@ export default {
     },
     getSelectedSize (data) {
       this.optionSelected.size = data
-      console.log(this.optionSelected)
+      // console.log(this.optionSelected)
       if (data === 'Grande') {
         this.sizeSelectedPrice = parseInt(this.detailInfo.coffeePrice) + 500
         this.totalPrice = this.sizeSelectedPrice * this.volume
@@ -111,19 +111,32 @@ export default {
     },
     getSelectedCup (data) {
       this.optionSelected.cup = data
-      console.log(this.optionSelected)
+      // console.log(this.optionSelected)
     },
     addVolume (price) {
       this.volume++
-      this.totalPrice = price * this.volume
+      if (price === 0) {
+        price = parseInt(this.detailInfo.coffeePrice)
+        this.totalPrice = price * this.volume
+      } else {
+        this.totalPrice = price * this.volume
+      }
       console.log(this.volume, this.totalPrice, price)
     },
     subtractVolume (price) {
       if (this.volume > 1) {
         this.volume--
-        this.totalPrice = price * this.volume
-        console.log(this.volume, this.totalPrice, price)
+        if (price === 0) {
+          price = parseInt(this.detailInfo.coffeePrice)
+          this.totalPrice = price * this.volume
+        } else {
+          this.totalPrice = price * this.volume
+        }
       }
+      console.log(this.volume, this.totalPrice, price)
+    },
+    getPriceWithComma (price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
   }
 }
@@ -145,9 +158,9 @@ export default {
     padding: 50px 30px 0px;
   }
   .close-btn {
-    background-color: var(--light-grey);
-    border-radius: 10px;
-    color: #fff;
+    background-color: transparent;
+    /* border-radius: 10px; */
+    color: var(--light-grey);
     border: none;
     position: absolute;
     right: 0;
@@ -191,19 +204,21 @@ export default {
   .size-measure {
     font-weight: 100;
   }
-  .size-selected {
+  .size--selected {
     border: 2.4px solid var(--green) !important;
   }
-  .cup-selected {
+  .cup--selected {
     background-color: var(--green) !important;
     color: #fff !important;
   }
   .option button {
     font-weight: 400;
     color: var(--grey);
-    padding: 5px 32px;
     background-color: transparent;
     border: 1px solid var(--light-grey);
+  }
+  .option.cup button {
+    padding: 5px 33px;
   }
   .option.cup :first-child {
     border-radius: 30px 0px 0px 30px;
@@ -247,9 +262,14 @@ export default {
   .volume-button button {
     border: 1px solid var(--dark-grey);
     color: var(--dark-grey);
+    font-size: 14px;
     cursor: pointer;
     background-color: transparent;
     border-radius: 50px;
+  }
+  .button--disabled {
+    border: 1px solid var(--light-grey) !important;
+    color: var(--light-grey) !important;
   }
   .payment-btn-container {
     width: 100%;
@@ -276,5 +296,34 @@ export default {
   }
   #venti {
     width: 40px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .option-modal-container {
+      padding: 50px 60px 0px 60px;
+    }
+    .option.size button {
+      width: 190px;
+      height: 200px;
+    }
+    .option.size p {
+      font-size: 15px;
+    }
+    .option.cup button {
+      width: 200px;
+      font-size: 14px;
+    }
+    .close-btn {
+      font-size: 20px;
+    }
+    #tall {
+      width: 50px;
+    }
+    #grande {
+      width: 55px;
+    }
+    #venti {
+      width: 60px;
+    }
   }
 </style>

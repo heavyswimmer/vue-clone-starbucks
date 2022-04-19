@@ -80,7 +80,7 @@ export default {
   }
   .event-list-area {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     padding: 10px 0px 10px 23px;
     /* border: 1px solid #000; */
   }

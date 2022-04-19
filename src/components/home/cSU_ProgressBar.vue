@@ -41,7 +41,7 @@ export default {
   .progress-bar {
     background-color: #eee;
     border-radius: 30px;
-    width: 230px;
+    width: 250px;
     height: 8px;
   }
   .progress-color-bar {
@@ -66,7 +66,7 @@ export default {
 
   @media screen and (min-width: 768px) {
     .progress-bar {
-      width: 600px;
+      width: 380px;
     }
     .progress-color-bar {
       width: 80px;

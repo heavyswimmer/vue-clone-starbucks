@@ -1,11 +1,11 @@
 <template>
   <header class="navbar" :class="{ 'navbar--hidden': !showNavBar }">
     <button type="button" @click="goBack">
-      <img class="left-arrow-icon" src="../../assets/image/icon/left-arrow.png" alt="LeftArrowIcon"/>
+      <img class="left-arrow-icon" src="../../assets/images/icon/left-arrow.png" alt="LeftArrowIcon"/>
     </button>
     <p class="header-title">음료</p>
     <button type="button" @click="openModal">
-      <img class="search-icon" src="../../assets/image/icon/search.png" alt="SearchIcon">
+      <img class="search-icon" src="../../assets/images/icon/search.png" alt="SearchIcon">
     </button>
   </header>
 </template>
@@ -72,12 +72,10 @@ export default {
     padding: 10px;
   }
   .navbar {
-    /* box-shadow: 0 2px 15px rgba(71, 120, 120, 0.5); */
     transform: translate3d(0, 0, 0);
     transition: 0.1s all ease-out;
   }
   .navbar.navbar--hidden {
-    /* box-shadow: none; */
     transform: translate3d(0, -100%, 0);
   }
   .header-title {

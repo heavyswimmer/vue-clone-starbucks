@@ -1,8 +1,8 @@
 <template>
   <button @click="backToList" class="left-arrow-icon">
-    <img src="../../assets/image/icon/left-arrow-white.png" alt="left-arrow">
+    <img src="../../assets/images/icon/left-arrow-white.png" alt="left-arrow">
   </button>
-  <section class="order-detail-container">
+  <section :class="{'modal--opened': optionShowYn === true}" class="order-detail-container">
     <img class="coffee-img" :src="detailInfo.imgPath" alt="coffee-img">
     <div class="detail-contents-container">
       <div class="coffee-title-container">
@@ -16,7 +16,7 @@
         {{ detailInfo.coffeeDetail }}
       </p>
       <p class="coffee-price">
-        {{ detailInfo.coffeePrice }}원
+        {{ getPriceWithComma(detailInfo.coffeePrice) }}원
       </p>
       <button :class="{'hot-only-type': detailInfo.coffeeType === 'hot', 'iced-only-type': detailInfo.coffeeType === 'ice'}" v-if="detailInfo.coffeeType === 'hot' || detailInfo.coffeeType === 'ice'" class="coffee-type"></button>
       <button class="both-hot-type" v-if="detailInfo.coffeeType === 'both'">HOT</button>
@@ -56,14 +56,10 @@ export default {
     },
     closeModal () {
       this.optionShowYn = false
+    },
+    getPriceWithComma (price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
-    // getCoffeeType (type) {
-    //   if (type === 'hot') {
-    //     return '../../assets/image/hot-only.png'
-    //   } else if (type === 'ice') {
-    //     return '../../assets/image/iced-only.png'
-    //   }
-    // }
   }
 }
 </script>
@@ -71,8 +67,20 @@ export default {
 <style scoped>
   .order-detail-container {
     background-color: #fff;
-    height: 100%;
+    height: 100vh;
   }
+  .modal--opened {
+    overflow: hidden;
+  }
+  /* .modal--on {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.3s;
+  }
+  .option-modal {
+    transform: translateY(20%);
+    opacity: 0;
+  } */
   .left-arrow-icon {
     cursor: pointer;
     padding: 20px 0px 0px 15px;
@@ -90,13 +98,13 @@ export default {
   }
   .coffee-img {
     width: 100%;
-    height: 50%;
   }
   .coffee-title {
     font-size: 20px;
     font-weight: 500;
   }
   .detail-contents-container {
+    height: 50%;
     padding: 20px;
     text-align: left;
   }
@@ -119,7 +127,6 @@ export default {
     color: var(--dark-grey);
   }
   .coffee-price {
-    /* font-family: 'Avenir', 'AppleSDGothicNeo', sans-serif; */
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -129,7 +136,7 @@ export default {
     font-weight: 200;
     padding: 15px;
     color: var(--dark-grey);
-    background-color: #F7F7F7;
+    background-color: #eceaea;
   }
   .coffee-type {
     background-color: #fff;
@@ -161,7 +168,6 @@ export default {
     margin-bottom: 15px;
     color: var(--dark-grey);
     border-right: none;
-    /* color: var(--red); */
   }
   .both-iced-type {
     width: 50%;
@@ -171,7 +177,6 @@ export default {
     padding: 7px;
     margin-bottom: 15px;
     color: var(--dark-grey);
-    /* color: var(--blue); */
   }
   .both-hot-type:focus {
     background-color: var(--red);
@@ -183,20 +188,22 @@ export default {
   }
   .order-btn-container {
     position: fixed;
+    width: 100%;
     bottom: 0;
+    left: 0;
     z-index: 2;
     background-color: #fff;
     width: 100%;
     height: 70px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   .order-btn {
-    width: 320px;
-    position: relative;
-    bottom: 5px;
+    width: 90%;
+    position: absolute;
+    left: 50;
+    bottom: 10px;
   }
   .coffee-title-container span {
     margin-left: 7px;
@@ -211,12 +218,11 @@ export default {
   }
 
   @media screen and (min-width: 768px) {
-    .order-btn-container {
-      width: 60%;
-      left: 303px;
-    }
     .order-btn {
-      width: 90%;
+      width: 60%;
+    }
+    .coffee-img {
+      max-width: 1200px;
     }
   }
 </style>

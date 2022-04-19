@@ -9,7 +9,7 @@
 <style scoped>
   .landing {
     /* border: 1px solid #000; */
-    padding: 50px 25px 10px 25px;
+    padding: 80px 25px 10px 25px;
   }
   .landing-title {
     font-size: 1.8rem;
