@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import ResultModal from '../modal/cSU_ResultModal.vue'
+import ResultModal from './cSU_ResultModal.vue'
 
 export default {
   name: 'OptionModal',
@@ -87,7 +87,7 @@ export default {
         this.resultModalShowYn = true
         setTimeout(() => {
           this.closeResult()
-        }, 5000)
+        }, 3000)
       }
     },
     closeResult () {
